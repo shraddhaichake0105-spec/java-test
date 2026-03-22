@@ -5,7 +5,8 @@ class Main {
         int b=3;
         int c= a+b;
         int d = a*b;
+        int e=a/b;
 
-        System.out.println("multiply"+d);
+        System.out.println("divide"+e);
     }
 }
