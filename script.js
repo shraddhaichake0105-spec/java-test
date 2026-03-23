@@ -1,16 +1,13 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const data = {
-        items: [
-            { name: "Item 1", price: 100 },
-            { name: "Item 2", price: 200 }
-        ]
-    };
-
-    let html = '<ul>';
-    data.items.forEach(item => {
-        html += `<li>${item.name} - $${item.price}</li>`;
-    });
-    html += '</ul>';
-
-    document.getElementById('invoice-container').innerHTML = html;
+    fetch('/api/invoice')
+        .then(resp => resp.json())
+        .then(data => {
+            let html = '<ul>';
+            data.items.forEach(item => {
+                html += `<li>${item.name} - $${item.price}</li>`;
+            });
+            html += '</ul>';
+            document.getElementById('invoice-container').innerHTML = html;
+        })
+        .catch(error => console.error("Failed to load invoice:", error));
 });
